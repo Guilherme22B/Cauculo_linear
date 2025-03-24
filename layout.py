@@ -19,17 +19,6 @@ class layout():
 
     cls()
 
-    print("----------------------------------------------------------")
-    print("-  Esse é um programa para resolução de sistemas lineares -")
-    print("----------------------------------------------------------")
-
-    cls()
-
-    print("--------------------------------------------")
-    print("- levando em conta uma matriz de até 10x10 -")
-    print("--------------------------------------------")
-    cls()
-
   @staticmethod
   def menu():
     print("==========================================")
@@ -45,6 +34,20 @@ class layout():
 
   @staticmethod
   def info_sistema():
+
+
+    
+    print("----------------------------------------------------------")
+    print("-  Esse é um programa para resolução de sistemas lineares -")
+    print("----------------------------------------------------------")
+    cls()
+
+    print("--------------------------------------------")
+    print("- levando em conta uma matriz de até 10x10 -")
+    print("--------------------------------------------")
+    cls()
+
+
     print("==========================================")
     print("||                                       ||")
     print("||     Linguagem ultilizada: python      ||")

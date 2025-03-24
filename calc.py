@@ -18,17 +18,17 @@ class calc():
   usuário (largura e altura), preenchendo-a 
   com valores padrão iguais a zero.'''
   @staticmethod 
-  def criar_matriz_zerada(largura, altura): 
-    matriz = [[0 for _ in range(largura)] for _ in range(altura)]
+  def criar_matriz_zerada(tamanho): 
+    matriz = [[0 for _ in range(tamanho[1])] for _ in range(tamanho[0])]
     return matriz
 
 
   '''essa função preenche a matriz com valores
      instipulados pelo usuario'''
   @staticmethod
-  def implementa_matriz(matriz, largura, altura):
-    for i in range(altura):
-      for j in range(largura): 
+  def implementa_matriz(tamanho, matriz):
+    for i in range(tamanho[0]):
+      for j in range(tamanho[1]): 
         matriz[i][j] = 10
     return matriz
 
@@ -36,6 +36,15 @@ class calc():
   @staticmethod
   def formatar_matriz(matriz):
     print("aqui deve conter a formatação da matriz ")
+
+  #essa matriz pede que o usuario insira o tamnaho e a largura
+  @staticmethod
+  def tamanho_matriz():
+    print("qual o tamnaho da matriz desejada? ")
+    altura = int(input("altura: "))
+    largura = int(input("largura: "))
+    tamanho = [altura, largura]
+    return tamanho
 
 
 
