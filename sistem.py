@@ -1,31 +1,34 @@
 import numpy as np
 
 def solicitar_sistema():
+    # Solicita ao usuário o tamanho do sistema e valida a entrada
     try:
-        n = int(input("Digite o tamanho do sistema (máximo 10): "))
-        if n > 10 or n < 1:
+        numero = int(input("Digite o tamanho do sistema (máximo 10): "))
+        if numero > 10 or numero < 1:
             raise ValueError("Tamanho inválido. Escolha um valor entre 1 e 10.")
     except ValueError as e:
         print(e)
         return solicitar_sistema()
 
+    # Inicializa as matrizes de coeficientes e termos independentes
     A = []
     B = []
     print("Digite os coeficientes da matriz aumentada:")
-    for i in range(n):
+    for i in range(numero):
         try:
             linha = list(map(float, input(f"Equação {i + 1}: ").split()))
-            if len(linha) != n + 1:
+            if len(linha) != numero + 1:
                 raise ValueError("Número incorreto de coeficientes. Tente novamente.")
         except ValueError as e:
             print(e)
             return solicitar_sistema()
-        A.append(linha[:-1])
-        B.append(linha[-1])
+        A.append(linha[:-1])  # Coeficientes
+        B.append(linha[-1])   # Termo independente
 
     return np.array(A, dtype=float), np.array(B, dtype=float)
 
 def imprimir_sistema(A, B, mensagem="Sistema:"):
+    # Exibe a matriz aumentada na tela
     print(mensagem)
     for i in range(len(B)):
         print(" ".join(f"{A[i, j]:8.3f}" for j in range(len(A[i]))) + f" | {B[i]:8.3f}")
@@ -33,31 +36,32 @@ def imprimir_sistema(A, B, mensagem="Sistema:"):
 def escalonar(A, B):
     n = len(B)
     for i in range(n):
-        # Pivoteamento parcial
+        # Pivoteamento parcial para evitar divisão por zero
         max_index = np.argmax(abs(A[i:, i])) + i
         if A[max_index, i] == 0:
             continue  # Se for zero, passa para a próxima iteração
 
+        # Troca de linhas para trazer o maior valor para a posição de pivô
         A[[i, max_index]] = A[[max_index, i]]
         B[[i, max_index]] = B[[max_index, i]]
 
-        # Transformar em 1 o pivô
+        # Normaliza a linha do pivô (transforma o pivô em 1)
         pivô = A[i, i]
         A[i] = A[i] / pivô
         B[i] = B[i] / pivô
 
-        # Zerar elementos abaixo do pivô
+        # Zera os elementos abaixo do pivô
         for j in range(i + 1, n):
             fator = A[j, i]
             A[j] -= fator * A[i]
             B[j] -= fator * B[i]
-
     return A, B
 
 def resolver_sistema(A, B):
     n = len(B)
     X = np.zeros(n)
 
+    # Substituição retroativa para encontrar as variáveis
     for i in range(n - 1, -1, -1):
         if A[i, i] == 0:
             if B[i] == 0:
@@ -70,6 +74,7 @@ def resolver_sistema(A, B):
     return X
 
 def executar():
+    # Executa o programa principal
     dados = solicitar_sistema()
     if dados is None:
         return
