@@ -26,9 +26,8 @@ class layout():
     print("==========================================")
     print("||                                      ||")
     print("||   [1] Iniciar Sistema                ||")
-    print("||   [2] Consultar Logs                 ||")
-    print("||   [3] Informações do Sistema         ||")
-    print("||   [4] Sair                           ||")
+    print("||   [2] Informações do Sistema         ||")
+    print("||   [3] Sair                           ||")
     print("||                                      ||")
     print("==========================================")
 

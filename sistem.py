@@ -1,37 +1,74 @@
 import numpy as np
 
-def solicitar_sistema():
-    # Solicita ao usuário o tamanho do sistema e valida a entrada
-    try:
-        numero = int(input("Digite o tamanho do sistema (máximo 10): "))
-        if numero > 10 or numero < 1:
-            raise ValueError("Tamanho inválido. Escolha um valor entre 1 e 10.")
-    except ValueError as e:
-        print(e)
-        return solicitar_sistema()
+class sistem():
+    def config_menu():
+        num = int(input("digite um número de 1 a 3: "))
+        if num > 3 or num < 1:
+            sistem.config_menu()
+        else:
+            return num
+    
 
-    # Inicializa as matrizes de coeficientes e termos independentes
-    A = []
-    B = []
-    print("Digite os coeficientes da matriz aumentada:")
-    for i in range(numero):
-        try:
-            linha = list(map(float, input(f"Equação {i + 1}: ").split()))
-            if len(linha) != numero + 1:
-                raise ValueError("Número incorreto de coeficientes. Tente novamente.")
-        except ValueError as e:
-            print(e)
-            return solicitar_sistema()
-        A.append(linha[:-1])  # Coeficientes
-        B.append(linha[-1])   # Termo independente
 
-    return np.array(A, dtype=float), np.array(B, dtype=float)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    def solicitar_sistema():
+      # Solicita ao usuário o tamanho do sistema e valida a entrada
+      try:
+          numero = int(input("Digite o tamanho do sistema (máximo 10): "))
+          if numero > 10 or numero < 1:
+              raise ValueError("Tamanho inválido. Escolha um valor entre 1 e 10.")
+      except ValueError as e:
+          print(e)
+          return sistem.solicitar_sistema()
+
+      # Inicializa as matrizes de coeficientes e termos independentes
+      A = []
+      B = []
+      print("Digite os coeficientes da matriz aumentada:")
+      for i in range(numero):
+          try:
+              linha = list(map(float, input(f"Equação {i + 1}: ").split()))
+              if len(linha) != numero + 1:
+                  raise ValueError("Número incorreto de coeficientes. Tente novamente.")
+          except ValueError as e:
+              print(e)
+              return sistem.solicitar_sistema()
+          A.append(linha[:-1])  # Coeficientes
+          B.append(linha[-1])   # Termo independente
+
+      return np.array(A, dtype=float), np.array(B, dtype=float)
+
+
+
+
+
 
 def imprimir_sistema(A, B, mensagem="Sistema:"):
     # Exibe a matriz aumentada na tela
     print(mensagem)
     for i in range(len(B)):
         print(" ".join(f"{A[i, j]:8.3f}" for j in range(len(A[i]))) + f" | {B[i]:8.3f}")
+
+
+
 
 def escalonar(A, B):
     n = len(B)
@@ -57,6 +94,10 @@ def escalonar(A, B):
             B[j] -= fator * B[i]
     return A, B
 
+
+
+
+
 def resolver_sistema(A, B):
     n = len(B)
     X = np.zeros(n)
@@ -73,9 +114,13 @@ def resolver_sistema(A, B):
 
     return X
 
+
+
+
+
 def executar():
     # Executa o programa principal
-    dados = solicitar_sistema()
+    dados = sistem.solicitar_sistema()
     if dados is None:
         return
 
@@ -93,3 +138,129 @@ def executar():
 
 if __name__ == "__main__":
     executar()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+'''
+class calc():
+  def inicializa_matriz(numero):
+       # Inicializa as matrizes de coeficientes e termos independentes
+    A = []
+    B = []
+    print("Digite os coeficientes da matriz aumentada:")
+    for i in range(numero):
+        try:
+            linha = list(map(float, input(f"Equação {i + 1}: ").split()))
+            if len(linha) != numero + 1:
+                raise ValueError("Número incorreto de coeficientes. Tente novamente.")
+        except ValueError as e:
+            print(e)
+            return  calc.config_menu()
+        A.append(linha[:-1])  # Coeficientes
+        B.append(linha[-1])   # Termo independente
+
+    return np.array(A, dtype=float), np.array(B, dtype=float)
+
+  #essa função cria uma regra para os valors que serao recolidos para o menu
+  def config_menu():
+    # Solicita ao usuário o tamanho do sistema e valida a entrada
+    try:
+        numero = int(input("Digite o tamanho do sistema (máximo 10): "))
+        if numero > 10 or numero < 1:
+            raise ValueError("Tamanho inválido. Escolha um valor entre 1 e 10.")
+            return numero
+    except ValueError as e:
+        print(e)
+        return calc.config_menu()
+    
+    def imprimir_matriz():
+      # Exibe a matriz aumentada na tela
+      print(mensagem)
+      for i in range(len(B)):
+          print(" ".join(f"{A[i, j]:8.3f}" for j in range(len(A[i]))) + f" | {B[i]:8.3f}")
+
+
+  #Esta função cria e inicializa uma matriz 
+  #bidimensional com dimensões definidas pelo 
+  #usuário (largura e altura), preenchendo-a 
+  com valores padrão iguais a zero.
+  @staticmethod 
+  def criar_matriz_zerada(tamanho): 
+    matriz = [[0 for _ in range(tamanho[1])] for _ in range(tamanho[0])]
+    return matriz
+
+
+  #essa função preenche a matriz com valores
+     #instipulados pelo usuario
+  @staticmethod
+  def implementa_matriz(tamanho, matriz):
+    for i in range(tamanho[0]):
+      for j in range(tamanho[1]): 
+        matriz[i][j] = 10
+    return matriz
+
+
+  @staticmethod
+  def formatar_matriz(matriz):
+    print("aqui deve conter a formatação da matriz ")
+
+  #essa matriz pede que o usuario insira o tamnaho e a largura
+  @staticmethod
+  def tamanho_matriz():
+    print("qual o tamnaho da matriz desejada? ")
+    altura = int(input("altura: "))
+    largura = int(input("largura: "))
+    tamanho = [altura, largura]
+    return tamanho
+
+'''
+
+    

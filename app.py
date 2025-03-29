@@ -1,4 +1,4 @@
-from calc import calc
+from sistem import sistem
 from layout import layout
 
 
@@ -13,9 +13,13 @@ calc.formatar_matriz(matriz)
 
 layout.bem_vindo()
 layout.menu()
-chave = calc.config_menu()
-if(chave == 1):
-    tamanho = calc.tamanho_matriz()
-    matriz = calc.criar_matriz_zerada(tamanho)
-    calc.implementa_matriz(tamanho, matriz)
+num = sistem.config_menu()
+if(num == 1):
+    sistem.solicitar_sistema()
+if (num == 2):
+    layout.info_sistema()
+if (num == 3):
+    print("sair")
+
+
 
