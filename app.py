@@ -1,5 +1,6 @@
 from sistem import sistem
 from layout import layout
+import sys
 
 
 '''
@@ -19,7 +20,7 @@ if(num == 1):
 if (num == 2):
     layout.info_sistema()
 if (num == 3):
-    print("sair")
+    sys.exit()
 
 
 
